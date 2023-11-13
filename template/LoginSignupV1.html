@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login-Singup | HireIQ</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css'>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loginsignupV1.css') }}">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+		{% if error_message %}
+		<div class="error-dialog">
+		  {% include 'ErrorMsg.html' %}
+		</div>
+	  {% endif %}	
+        <form action="/registration" method="POST" onsubmit="return validateRegistrationForm()">
+            <h1>Create Account</h1>
+            <input type="text" name="name" placeholder="Name" required />
+            <input type="email" name="email" id="regEmail" placeholder="Email" required />
+            <input type="password" name="password" id="regPassword" placeholder="Password" required />
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+		{% if error_message %}
+		<div class="error-dialog">
+		  {% include 'ErrorMsg.html' %}
+		</div>
+	  {% endif %}	
+        <form action="/login" method="POST" onsubmit="return validateLoginForm()">
+            <h1>Sign in</h1>
+            <input type="email" name="email" id="loginEmail" placeholder="Email" required />
+            <input type="password" name="password" id="loginPassword" placeholder="Password" required />
+            <button>Sign In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+				<h2>Welcome Back to </h2><h1>HireIQ!</h1>
+        <p><strong>HireIQ</strong>, your trusted platform for connecting with incredible career opportunities. It's great to see you again! Whether you're here to explore new job openings, catch up on your applications, or simply stay updated on your professional journey, we're here to support you every step of the way.</p>
+        <button class="ghost" id="signIn">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello</h1>
+                <p>Unlock a world of opportunities by joining the <strong>HireIQ</strong> community. Sign up today to create your new account and embark on a journey towards your dream career. We're here to make the job search and hiring process easier and more efficient for you. Your next great opportunity is just a few clicks away. Let's get started!</p>
+                <button class="ghost" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='loginsignupV1.js') }}"></script>
+</body>
+</html>

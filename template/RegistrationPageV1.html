@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Details Registration | HireIQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'><link rel="stylesheet" href="{{ url_for('static', filename='RegistrationPageV1.css') }}">
+
+</head>
+<body>
+<div class="container mt-3">
+  <a href="/" class="logout-button"><b>Logout</b></a>
+    <form action="/UserDetails" method="POST" enctype="multipart/form-data">
+        <div class="row jumbotron box8">
+      <div class="col-sm-12 mx-t3 mb-4">
+        <h2 class="text-center text-info">Enter Your Personal Details</h2>
+        
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="name-f">Name</label>
+        <input type="text" class="form-control" name="fname" id="name-f" placeholder="Enter Your Full Name" required>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="Openness">Enjoy new experiences or trying out new things?</label>
+        <select class="form-control custom-select browser-default" name="openness">
+            <option value="1">Strongly Disagreee</option>
+            <option value="2">Disagree</option>
+            <option value="3">Somewhat Disagree</option>
+            <option value="4">Neutral</option>
+            <option value="5">Somewhat Agree</option>
+            <option value="6">Agree</option>
+            <option value="7">Strongly Agree</option>
+            <option value="8">Very Strongly Agree</option>
+            <option value="9">Extremely Agree</option>
+            <option value="10">Completely Agree</option>
+          </select>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" id="email" placeholder="Enter Your Email Address" required>
+    </div>
+      <div class="col-sm-6 form-group">
+        <label for="Conscientiousness">Wishing to do one's work well and thoroughly?</label>
+        <select class="form-control custom-select browser-default" name="conscientiousness">
+            <option value="1">Strongly Disagreee</option>
+            <option value="2">Disagree</option>
+            <option value="3">Somewhat Disagree</option>
+            <option value="4">Neutral</option>
+            <option value="5">Somewhat Agree</option>
+            <option value="6">Agree</option>
+            <option value="7">Strongly Agree</option>
+            <option value="8">Very Strongly Agree</option>
+            <option value="9">Extremely Agree</option>
+            <option value="10">Completely Agree</option>
+          </select>
+
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="address-1">Address</label>
+        <input type="address" class="form-control" name="locality" id="address-1" placeholder="Enter Your Complete Address" required>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="Extraversion">How Outgoing And Social Interaction You Like?</label>
+        <select class="form-control custom-select browser-default" name="extraversion">
+            <option value="1">Strongly Disagreee</option>
+            <option value="2">Disagree</option>
+            <option value="3">Somewhat Disagree</option>
+            <option value="4">Neutral</option>
+            <option value="5">Somewhat Agree</option>
+            <option value="6">Agree</option>
+            <option value="7">Strongly Agree</option>
+            <option value="8">Very Strongly Agree</option>
+            <option value="9">Extremely Agree</option>
+            <option value="10">Completely Agree</option>
+          </select>
+      </div>
+      <div class="col-sm-4 form-group">
+        <label for="State">State</label>
+        <select class="form-control custom-select browser-default" name="state">
+            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu
+            </option>
+            <option value="Delhi">Delhi</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Puducherry">Puducherry</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+          </select>
+
+      </div>
+      <div class="col-sm-2 form-group">
+        <label for="zip">Zip-Code</label>
+        <input type="zip" class="form-control" name="zip" id="zip" placeholder="Zip-Code." required>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="Agreeableness">How Much Would You Like Work With Your Peers?</label>
+        <select class="form-control custom-select browser-default" name="agreeableness">
+            <option value="1">Strongly Disagreee</option>
+            <option value="2">Disagree</option>
+            <option value="3">Somewhat Disagree</option>
+            <option value="4">Neutral</option>
+            <option value="5">Somewhat Agree</option>
+            <option value="6">Agree</option>
+            <option value="7">Strongly Agree</option>
+            <option value="8">Very Strongly Agree</option>
+            <option value="9">Extremely Agree</option>
+            <option value="10">Completely Agree</option>
+        </select>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="Date">Date Of Birth</label>
+        <input type="Date" name="dob" class="form-control" id="Date" placeholder="" required>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="Neuroticism">How Often You Feel Negativity?</label>
+        <select class="form-control browser-default custom-select" name="neuroticism">
+            <option value="1">Strongly Disagreee</option>
+            <option value="2">Disagree</option>
+            <option value="3">Somewhat Disagree</option>
+            <option value="4">Neutral</option>
+            <option value="5">Somewhat Agree</option>
+            <option value="6">Agree</option>
+            <option value="7">Strongly Agree</option>
+            <option value="8">Very Strongly Agree</option>
+            <option value="9">Extremely Agree</option>
+            <option value="10">Completely Agree</option>
+        </select>
+      </div>
+
+      <div class="col-sm-2 form-group">
+        <label for="cod">Country Code</label>
+        <select class="form-control browser-default custom-select" name="country_code">
+          <option data-countryCode="IND" value="91" selected>India (+91)</option>
+          <option disabled="disabled">Others</option>
+        </select>
+      </div>
+      <div class="col-sm-4 form-group">
+        <label for="tel">Phone</label>
+        <input type="tel" name="phone" class="form-control" id="tel" placeholder="Enter Your Contact Number." required>
+      </div>
+      <div class="col-sm-6 form-group">
+        <label for="resume">Resume</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="resume" name="resume" required>
+            <label class="custom-file-label" for="resume">Choose file</label>
+        </div>
+    </div>    
+      <div class="col-sm-6 form-group">
+        <label for="sex">Gender</label>
+        <select id="sex" class="form-control browser-default custom-select" name="sex">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="unspesified">Unspecified</option>
+        </select>
+      </div>
+      <div class="col-sm-12 form-group mb-0">
+        <button class="btn btn-primary float-right">Submit</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+<!-- partial -->
+  
+</body>
+</html>

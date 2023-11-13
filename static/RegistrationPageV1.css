@@ -1,0 +1,32 @@
+label {
+    font-weight: 600;
+    color: #666;
+}
+body {
+    background-image: url(https://res.cloudinary.com/finnhvman/image/upload/v1541930411/pattern.png);
+}
+.box8{
+  box-shadow: 0px 0px 5px 1px #c4baba;
+}
+.mx-t3{
+  margin-top: -3rem;
+}
+
+.logout-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  border: 2px solid #666;
+  border-radius: 5px;
+  background-color:#888888;
+  color: #333;
+  margin-top: 20px;
+  margin-right:20px ;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #f0f0f0;
+}
