@@ -164,7 +164,7 @@ def user_details():
     resume_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     resume.save(resume_path)
 
-    # Update existing user data or insert new user data
+    # Update existing user data
 
     collection.update_one({'EMAIL_ID': email}, {
         '$set': {
