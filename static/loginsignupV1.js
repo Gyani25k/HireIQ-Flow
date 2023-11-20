@@ -22,6 +22,8 @@ function validateRegistrationForm() {
   const email = document.getElementById('regEmail').value;
   const password = document.getElementById('regPassword').value;
 
+
+
   // Validate email format
   const emailPattern = /[^@]+@[^@]+\.[^@]+/;
   if (!emailPattern.test(email)) {
