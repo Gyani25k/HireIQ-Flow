@@ -47,6 +47,19 @@ def registration_success():
     return render_template('registration_success.html')
 
 
+# App Route for Video Round
+
+@app.route('/VedioRecordV1')
+def videorecord():
+    return render_template('VideoRecord.html')
+
+# App Route for Thankyou Page
+
+@app.route('/ThankyouV1')
+def thankyou():
+    return render_template('ThankyouPage.html')
+
+
 # code for Registration Page
 
 @app.route('/registration', methods=['POST', 'GET'])
@@ -82,7 +95,7 @@ def registration():
 
 # code for Login Page 
 
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -97,22 +110,19 @@ def login():
                 'EMAIL_ID': user['EMAIL_ID'],
                 'LOGINDATE_TIME': date
             })
-            if user['IS_STEP1_DONE']== 'Y':
-                temp="You've completed ROUND 1! Best of luck for ROUND 2!"
-                return jsonify(temp)
 
-            if user['IS_STEP2_DONE']=='Y':
-                temp="Round 2 is finished! Thank you for selecting HireIQ."
-                return jsonify(temp)
-            
-            if user['IS_COMPLETED']=='Y':
-                temp="Completion of all tests! Appreciate your choice of HireIQ."
-                return jsonify(temp)
-            
+            if user['IS_COMPLETED'] == 'Y':
+                return render_template('ThankyouPage.html')
+
+            if user['IS_STEP1_DONE'] == 'Y':
+                return render_template('VideoRecord.html')
+
+
             return render_template('RegistrationPageV1.html')
         else:
             error_message = 'Invalid email or password. Please try again.'
             return render_template('LoginSignupV1.html', error_message=error_message)
+
 
 
 
@@ -145,24 +155,58 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def user_details():
     # Retrieve form data
     fname = request.form.get('fname')
-    openness = request.form.get('openness')
+    openness = int(request.form.get('openness'))
     email = request.form.get('email')
-    conscientiousness = request.form.get('conscientiousness')
+    conscientiousness = int(request.form.get('conscientiousness'))
     locality = request.form.get('locality')
-    extraversion = request.form.get('extraversion')
+    extraversion = int(request.form.get('extraversion'))
     state = request.form.get('state')
     zip_code = request.form.get('zip')
-    agreeableness = request.form.get('agreeableness')
+    agreeableness = int(request.form.get('agreeableness'))
     dob = request.form.get('dob')
-    neuroticism = request.form.get('neuroticism')
+    neuroticism = int(request.form.get('neuroticism'))
     country_code = request.form.get('country_code')
     phone = request.form.get('phone')
     resume = request.files['resume']
     gender = request.form.get('sex')
 
+    dob_date = datetime.strptime(dob, '%Y-%m-%d')
+
+    # Calculate age
+    current_date = datetime.now()
+    age = current_date.year - dob_date.year 
+
     filename = secure_filename(resume.filename)
     resume_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     resume.save(resume_path)
+
+
+    if gender == "male":
+
+        input_gender = 1
+    else:
+        input_gender = 0
+
+    class_dict = {'extraverted': 0,
+                'serious': 1,
+                'dependable': 2,
+                'lively': 3,
+                'responsible': 4}
+
+    # Predicting Personality
+
+    with open('model/model.pkl', 'rb') as model_file:
+        loaded_model = pickle.load(model_file)
+
+    input_values = [input_gender,age,openness,neuroticism,conscientiousness,agreeableness,extraversion]
+
+    pred = loaded_model.predict([input_values])[0]
+
+    for key, value in class_dict.items():
+        if value == pred:
+            personality = key
+
+    predicted_personality = personality.capitalize()
 
     # Update existing user data
 
@@ -176,11 +220,13 @@ def user_details():
             'ZIP_CODE': int(zip_code),
             'COUNTRY_CODE': country_code,
             'DATE_OF_BIRTH': dob,
+            'AGE':age,
             'OPENNESS_RATING': int(openness),
             'CONSCIENTIOUSNESS_RATING': int(conscientiousness),
             'EXTRAVERSION_RATING': int(extraversion),
             'AGREEABLENESS_RATING': int(agreeableness),
             'NEUROTICISM_RATING': int(neuroticism),
+            'PREDICTED_PERSONALITY':predicted_personality,
             'RESUME_URL': resume_path
         }
     }, upsert=True)
@@ -190,12 +236,10 @@ def user_details():
     print("existing_user",existing_user)
 
 
-    temp={"Message":"Data received successfully!"}
-
-    return jsonify(temp)
+    return render_template('VideoRecord.html')
 
 
 
 
 if __name__ == "__main__" :
-    app.run(debug=True)
+    app.run(debug=True,port=8080)
