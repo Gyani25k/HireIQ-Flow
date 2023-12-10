@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Round 2 | HireIQ </title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='VideoRecord.css') }}">
-  </head>
-  <body>
-    <div id="container">
-      <a href="/" class="logout-button"><b>Logout</b></a>
-      <video id="gum" playsinline autoplay muted></video>
-      <div id="question"></div>
-      <div><button id="start">Start Camera</button></div>
-      <div id='buttons'>
-        <button id='next' style="display:none;">Next Question</button>
-        <button id="record" disabled>Record</button>
-        <button id="download" disabled>Submit</button>
-      </div>
 
-      <div class="audio-container">
-        <h4 class="audio-title">Enhance Your Audio</h4>
-        <p class="audio-option">
-          Reduce Echo: <input type="checkbox" id="echoCancellation" class="audio-checkbox" /> 
-        </p>
-        <p class="audio-option">
-          Suppress Noise: <input type="checkbox" id="noiseSuppression" class="audio-checkbox" /> 
-        </p>
-        <p class="audio-option">
-          Automatic Gain Control: <input type="checkbox" id="autogaincontrol" class="audio-checkbox" /> 
-        </p>
-      </div>
-      
-      <div>
-        <span id="errorMsg"></span>
-      </div>
-      
+<head>
+  <title>Round 2 | HireIQ </title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='VideoRecord.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div id="container">
+    <a href="/" class="logout-button"><b>Logout</b></a>
+    <video id="gum" playsinline autoplay muted></video>
+    <div id="question"></div>
+    <div><button id="start">Start Camera</button></div>
+    <div id='buttons'>
+      <button id='next' style="display:none;">Next Question</button>
+      <button id="record" disabled>Record</button>
+      <button id="download" disabled>Submit</button>
     </div>
-  </body>
+
+    <div class="audio-container">
+      <h4 class="audio-title">Enhance Your Audio</h4>
+      <p class="audio-option">
+        Reduce Echo: <input type="checkbox" id="echoCancellation" class="audio-checkbox" />
+      </p>
+      <p class="audio-option">
+        Suppress Noise: <input type="checkbox" id="noiseSuppression" class="audio-checkbox" />
+      </p>
+      <p class="audio-option">
+        Automatic Gain Control: <input type="checkbox" id="autogaincontrol" class="audio-checkbox" />
+      </p>
+    </div>
+
+    <div>
+      <span id="errorMsg"></span>
+    </div>
+
+  </div>
+
+
   <script src="{{ url_for('static', filename='VideoRecord.js') }}"></script>
+</body>
+
 </html>

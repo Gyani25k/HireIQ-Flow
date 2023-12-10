@@ -84,7 +84,8 @@ def registration():
             "PASSWORD": hashed_password,
             "IS_STEP1_DONE" : "N",
             "IS_STEP2_DONE" : "N",
-            "IS_COMPLETED" : "N"
+            "IS_COMPLETED" : "N",
+            "ROLE_ID":"2"
         }
         collection.insert_one(user_data)
         print(user_data)
@@ -111,11 +112,17 @@ def login():
                 'LOGINDATE_TIME': date
             })
 
-            if user['IS_COMPLETED'] == 'Y':
-                return render_template('ThankyouPage.html')
+            if user['ROLE_ID'] == '2':
 
-            if user['IS_STEP1_DONE'] == 'Y':
-                return render_template('VideoRecord.html')
+                if user['IS_COMPLETED'] == 'Y':
+                    return render_template('ThankyouPage.html')
+
+                if user['IS_STEP1_DONE'] == 'Y':
+                    return render_template('VideoRecord.html')
+            
+            else:
+                temp="You are a Admin"
+                return jsonify(temp)
 
 
             return render_template('RegistrationPageV1.html')
@@ -221,12 +228,14 @@ def user_details():
             'COUNTRY_CODE': country_code,
             'DATE_OF_BIRTH': dob,
             'AGE':age,
+            'ROLE_ID':"2",
             'OPENNESS_RATING': int(openness),
             'CONSCIENTIOUSNESS_RATING': int(conscientiousness),
             'EXTRAVERSION_RATING': int(extraversion),
             'AGREEABLENESS_RATING': int(agreeableness),
             'NEUROTICISM_RATING': int(neuroticism),
             'PREDICTED_PERSONALITY':predicted_personality,
+            'PROFILE_UPDATE_DATETIME':current_date,
             'RESUME_URL': resume_path
         }
     }, upsert=True)

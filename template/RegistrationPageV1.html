@@ -187,8 +187,79 @@
     </div>
   </form>
 </div>
+
+<div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="instructionsModalLabel">Instructions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Add your round 1 instructions here -->
+        <p>Please follow the instructions for Round 1:</p>
+        <ul>
+            <li><b>Use the email that you used during signup</b> when entering your email address.</li>
+            <li><b>Complete the form with accurate personal details.</b></li>
+            <li><b>Upload your resume</b> using the provided file input.</li>
+            <li><b>Select your preferences on various traits</b> using the dropdown menus.</li>
+            <li>When <b>uploading your resume</b>, ensure that the resume file name is in the format <b>FullName_CollegeName</b>.</li>
+            <li>Upload your resume in <b>PDF format only</b>.</li>
+            <!-- Add more instructions as needed -->
+        </ul>
+      </div>
+
+      <div class="modal-body">
+        <!-- Add your round 2 instructions here -->
+        <p>For Round 2, you will be recording video responses to three questions asked by our HR team. Please follow the instructions below:</p>
+        <ol>
+            <li><b>Prepare for the video recording:</b>
+                <ul>
+                    <li>Find a quiet and well-lit space for recording.</li>
+                    <li>Ensure your camera and microphone are functioning properly.</li>
+                    <li>Dress professionally as you would for an in-person interview.</li>
+                </ul>
+            </li>
+    
+            <li><b>Answer the three provided questions:</b>
+                <ul>
+                    <li>Keep your responses clear, concise, and within the given time limit for each question.</li>
+                    <li>Ensure your surroundings are free from distractions during the recording.</li>
+                </ul>
+            </li>   
+            <li><b>Submit the form:</b>
+                <ul>
+                    <li>Complete any additional form fields that may be provided.</li>
+                    <li>Double-check all details for accuracy before submitting.</li>
+                </ul>
+            </li>
+        </ol>
+    
+        <!-- Feel free to add more specific instructions or details as needed -->
+    </div>
+    
+    
+    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- partial -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Show the modal on page load
+    $('#instructionsModal').modal('show');
+  });
+</script>
 
 <script src="{{ url_for('static', filename='RegistrationPageV1.js') }}"></script>
 
