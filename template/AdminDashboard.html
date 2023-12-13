@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='AdminDashboard.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <div class="header__box" style="text-align: center;">
+            <h2> Admin Dashboard  </h2>
+            <a href="/" class="logout-button"><b>Logout</b></a>
+        </div>
+    </header>
+
+    <div class="body">
+        <div class="student2">
+            <h3>Jitendra Khatri</h3>
+            <div class="box1">
+
+                <div class="left">
+                    <a id="white" href="/Profile">Evaluate Now</a>
+                    <div class="comment" style="margin:5px;"></div>
+                </div>
+                
+                <div class="right__sidebar">
+                   
+                    <div class="icon">
+                        <button class='accepted' value="accept">
+                        <span class="material-icons">
+                            mail_outline
+                        </span>
+                    </button>
+                    </div>
+                    <div class="icon">
+                        <button class='rejected'><span class="material-icons">
+                            thumb_down_off_alt
+                        </span>
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="student2">
+            <h3>Jitendra Khatri</h3>
+            <div class="box1">
+
+                <div class="left">
+                     
+                    <a id="white" href="/Profile" target="_blank">Evaluate Now</a>
+                    <div class="comment" style="margin:5px;"></div>
+                </div>
+                
+                <div class="right__sidebar">
+                   
+                    <div class="icon">
+                        <button class='accepted' value="accept">
+                        <span class="material-icons">
+                            mail_outline
+                        </span>
+                    </button>
+                    </div>
+                    <div class="icon">
+                        <button class='rejected'><span class="material-icons">
+                            thumb_down_off_alt
+                        </span>
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="student2">
+            <h3>Jitendra Khatri</h3>
+            <div class="box1">
+
+                <div class="left">
+                     
+                    <a id="white" href="/Profile" target="_blank">Evaluate Now</a>
+                    <div class="comment" style="margin:5px;"></div>
+                </div>
+                
+                <div class="right__sidebar">
+                   
+                    <div class="icon">
+                        <button class='accepted' value="accept">
+                        <span class="material-icons">
+                            mail_outline
+                        </span>
+                    </button>
+                    </div>
+                    <div class="icon">
+                        <button class='rejected'><span class="material-icons">
+                            thumb_down_off_alt
+                        </span>
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="student2">
+            <h3>Gaurav Rajput</h3>
+            <div class="box1">
+
+                <div class="left">
+                     
+                    <a id="white" href="/Profile" target="_blank">Evaluate Now</a>
+                    <div class="comment" style="margin:5px;"></div>
+                </div>
+                
+                <div class="right__sidebar">
+                   
+                    <div class="icon">
+                        <button class='accepted' value="accept">
+                        <span class="material-icons">
+                            mail_outline
+                        </span>
+                    </button>
+                    </div>
+                    <div class="icon">
+                        <button class='rejected'><span class="material-icons">
+                            thumb_down_off_alt
+                        </span>
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="student2">
+            <h3>Akash Kumar Rana</h3>
+            <div class="box1">
+
+                <div class="left">
+                     
+                    <a id="white" href="/Profile" target="_blank">Evaluate Now</a>
+                    <div class="comment" style="margin:5px;"></div>
+                </div>
+                
+                <div class="right__sidebar">
+                   
+                    <div class="icon">
+                        <button class='accepted' value="accept">
+                        <span class="material-icons">
+                            mail_outline
+                        </span>
+                    </button>
+                    </div>
+                    <div class="icon">
+                        <button class='rejected'><span class="material-icons">
+                            thumb_down_off_alt
+                        </span>
+                    </button>
+                    </div>
+                    <!-- <div class="icon">
+                        <button class='check-again' onclick="redirectToHomepage()">
+                            <span class="material-icons">
+                                autorenew
+                            </span>
+                        </button>
+                    </div> -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+    
+    <script src="{{ url_for('static', filename='AdminDashboard.js') }}"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Get all the "Evaluate Now" buttons
+  var evaluateButtons = document.querySelectorAll('.body .student2 .left a');
+
+  // Add click event listener to each button
+  evaluateButtons.forEach(function(button) {
+    button.addEventListener('click', function(event) {
+      // Prevent the default behavior of the link
+      event.preventDefault();
+
+      // Change the text of the clicked button to "Evaluated"
+      button.textContent = 'Evaluated';
+
+      // Create and append the icon container
+      var iconContainer = document.createElement('div');
+      iconContainer.className = 'box1';
+
+      // Create and append the icon element
+      var iconDiv = document.createElement('div');
+      iconDiv.className = 'icon';
+
+      var checkAgainButton = document.createElement('button');
+      checkAgainButton.className = 'check-again';
+      checkAgainButton.onclick = redirectToProfile;
+
+      var materialIcon = document.createElement('span');
+      materialIcon.className = '';
+      materialIcon.textContent = 'Check Again';
+
+      checkAgainButton.appendChild(materialIcon);
+      iconDiv.appendChild(checkAgainButton);
+
+      iconContainer.appendChild(iconDiv);
+
+      // Append the icon container to the parent of the clicked button
+      button.parentNode.appendChild(iconContainer);
+
+      // Open the "Profile" page in a new tab
+      window.open('/Profile', '_blank');
+    });
+  });
+
+  // Function to handle the click event of the check-again button
+  function redirectToProfile() {
+    // Implement the desired functionality, e.g., redirect to the profile page
+    window.open('/Profile', '_blank'); // Adjust the URL to your desired profile page
+  }
+});
+
+
+
+    </script>
+</body>
+
+</html>

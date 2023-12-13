@@ -59,6 +59,16 @@ def videorecord():
 def thankyou():
     return render_template('ThankyouPage.html')
 
+# App Route for Admin Page
+@app.route('/Admin')
+def admin():
+    return render_template('AdminDashboard.html')
+
+# App Route for Profile Page
+@app.route('/Profile')
+def profile():
+    return render_template('Profilepage.html')
+
 
 # code for Registration Page
 
@@ -121,8 +131,7 @@ def login():
                     return render_template('VideoRecord.html')
             
             else:
-                temp="You are a Admin"
-                return jsonify(temp)
+                return render_template('AdminDashboard.html')
 
 
             return render_template('RegistrationPageV1.html')
