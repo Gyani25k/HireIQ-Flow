@@ -1,0 +1,100 @@
+/* Add this to your AdminDashboard.css file */
+
+/* Reset some default styles for better consistency */
+body, h1, h2, h3, p, a {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  background-image: url(https://res.cloudinary.com/finnhvman/image/upload/v1541930411/pattern.png);
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+
+.header__box {
+  text-align: center;
+}
+
+.body {
+  justify-content: space-evenly; /* Adjust as needed */
+}
+
+.student2 {
+  flex-basis: calc(25% - 20px);
+  margin: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 5px;
+  font-family: Segoe UI;
+}
+
+
+.box1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left {
+  flex-grow: 1;
+}
+
+.right__sidebar {
+  display: flex;
+  gap: 10px;
+}
+
+.accepted, .rejected,.check-again {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: medium;
+}
+
+.accepted:hover, .rejected:hover ,.check-again:hover{
+  background-color: #45a049;
+}
+
+#white {
+  color: #fff;
+  background-color: #007BFF;
+  display: inline-block;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px; /* Adjust as needed */
+}
+
+#white:hover {
+  background-color: #0056b3;
+}
+
+.logout-button {
+  position: absolute;
+  top: -17px;
+  right: 10px;
+  padding: 10px;
+  border: 2px solid #a4a4a4;
+  border-radius: 5px;
+  background-color:#a4a4a4;
+  color: #333;
+  margin-top: 20px;
+  margin-right:20px ;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #f0f0f0;
+}
