@@ -51,14 +51,7 @@ recordButton.addEventListener('click', () => {// to start the camera for recordi
   }
 });
 
-// playButton.addEventListener('click', () => {
-//   const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
-//   recordedVideo.src = null;
-//   recordedVideo.srcObject = null;
-//   recordedVideo.src = window.URL.createObjectURL(superBuffer);
-//   recordedVideo.controls = true;
-//   recordedVideo.play();
-// });
+
 
 downloadButton.addEventListener('click', () => {// send data to server 
   var data = new FormData();
@@ -66,14 +59,14 @@ downloadButton.addEventListener('click', () => {// send data to server
     const arr=[];
     arr.push(blob);
     if(index<3){
-      const blobdata=new Blob(arr,{type:'video/webm'});
+      const blobdata=new Blob(arr,{type:'video/mp4'});
       data.append(`question${index+1}`,blobdata);
     }
   });
 
 
   
-  const url1 = `/recorded`;
+  const url1 = `/ThankyouV1`;
   fetch(`${window.origin}/analysis`, {
     method: 'POST',
     body: data
@@ -85,6 +78,8 @@ downloadButton.addEventListener('click', () => {// send data to server
     .then(data => {
       console.log(data)
       console.log(time);
+      document.body.classList.add('blur');
+
       if (data === 'success') {
         const a = document.createElement('a');
         a.style.display = 'none';
@@ -92,6 +87,11 @@ downloadButton.addEventListener('click', () => {// send data to server
         a.href = url1;
         document.body.appendChild(a);
         a.click();
+        
+        // Remove blur class after alert is displayed
+        document.body.classList.remove('blur');
+      
+        alert("Video Saved");
       }
       else {
         alert("can't post");
