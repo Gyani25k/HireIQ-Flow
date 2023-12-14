@@ -7,12 +7,16 @@ from datetime import datetime
 from werkzeug.utils import secure_filename
 import os
 import pickle
+import cv2
 from datetime import datetime
 
 
 app = Flask(__name__,template_folder="template")
 
 CORS(app)
+
+app.secret_key = 'HIREIQ@2023'
+
 
 
 client = pymongo.MongoClient("mongodb://localhost:27017/")

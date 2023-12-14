@@ -1,4 +1,34 @@
 from dependency import *
+from fer_video_analysis import video_Analysis_
+from flask_login import LoginManager, login_user, login_required, current_user, logout_user
+from flask_login import login_user
+from bson import ObjectId
+
+login_manager = LoginManager(app)
+login_manager.login_view = 'loginSignupV1'
+
+
+from flask_login import UserMixin
+
+
+class User(UserMixin):
+    def __init__(self, user_id):
+        self.id = user_id
+
+    def get_id(self):
+        return str(self.id)
+
+@login_manager.user_loader
+def load_user(user_id):
+    user_data = collection.find_one({'_id': ObjectId(user_id)})
+    if user_data:
+        user = User(user_data['_id'])
+        user.id = str(user_data['_id'])
+        # Add other user attributes if needed
+        return user
+    return None
+
+
 
 # Dictonary for Questions Answers
 
@@ -115,6 +145,8 @@ def login():
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
         user = collection.find_one({'EMAIL_ID': email, 'PASSWORD': hashed_password})
         if user:
+            user_instance = User(user['_id'])
+            login_user(user_instance, remember=True)
             data = collection1.insert_one({
                 'USER_ID': user['_id'],
                 'USERNAME': user['USERNAME'],
@@ -255,6 +287,60 @@ def user_details():
 
 
     return render_template('VideoRecord.html')
+
+@app.route('/analysis', methods=['POST'])
+def video_analysis():
+    if request.method == 'POST':
+
+        user_id = current_user.id
+        print("userID",user_id)
+
+        # get videos using media recorder js and save
+        quest1 = request.files['question1']
+        quest2 = request.files['question2']
+        quest3 = request.files['question3']
+        path1 = "./static/video/{}.{}".format("question1", "webm")
+        path2 = "./static/video/{}.{}".format("question2", "webm")
+        path3 = "./static/video/{}.{}".format("question3", "webm")
+        quest1.save(path1)
+        quest2.save(path2)
+        quest3.save(path3)
+
+        videos = ["question1.webm", "question2.webm", "question3.webm"]
+        frame_per_sec = 100
+        size = (1280, 720)
+
+        video = cv2.VideoWriter("./static/video/combined.mp4", cv2.VideoWriter_fourcc(*"mp4v"), int(frame_per_sec), size)
+
+        # Write all the frames sequentially to the new video
+        for v in videos:
+            curr_v = cv2.VideoCapture(f'./static/video/{v}')
+            while curr_v.isOpened():
+                r, frame = curr_v.read()
+                if not r:
+                    break
+                video.write(frame)
+        video.release()
+
+
+        file_path = './static/video/combined.mp4'
+        video_Analysis_(file_path)
+
+        collection.update_one({'_id': ObjectId(user_id)}, {
+        '$set': {
+            "IS_STEP2_DONE" : "Y",
+            "IS_COMPLETED" : "Y"
+        }
+        }, upsert=True)
+
+        existing_user = collection.find_one({'_id': ObjectId(user_id)})
+
+        print("existing_user",existing_user)
+
+
+        return "success"
+
+
 
 
 
