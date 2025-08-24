@@ -1,0 +1,12 @@
+Flask
+Flask-CORS
+Flask-Login
+pymongo
+opencv-python
+fer
+matplotlib
+numpy
+Werkzeug
+Pillow
+scikit-learn
+pandas
